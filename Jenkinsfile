@@ -1,33 +1,34 @@
-agent any 
-tools {maven "M3"}
-stages{
+pipeline{
+    agent any 
+    tools {maven "M3"}
+    stages{
 
-    stage("checkout"){
+        stage("checkout"){
 
-        steps {
-            git branch:"main", url:"https://github.com/AnjuMeleth/SpringPetClinic.git"
+            steps {
+                git branch:"main", url:"https://github.com/AnjuMeleth/SpringPetClinic.git"
 
+            }
         }
-    }
-    stage("build"){
+        stage("build"){
 
-        steps{
-            sh "mvn compile"
-        }
-    }   
-    stage("test"){
+            steps{
+                sh "mvn compile"
+            }
+        }   
+        stage("test"){
             steps{
                 sh "mvn test"
             }
         }
-    stage("package"){
+        stage("package"){
 
             steps{
 
                 sh "mvn package"
             }
         }
-    stage("deploy"){
+        stage("deploy"){
 
             steps{
 
@@ -35,4 +36,5 @@ stages{
             }
         }
 
+}
 }
